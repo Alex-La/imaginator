@@ -2,7 +2,7 @@
   "name": "imaginator",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "repository": "https://github.com/Alex-La/imaginator-backend.git",
+  "repository": "https://github.com/Alex-La/imaginator.git",
   "author": "Alex Larionov <lars6162@gmail.com>",
   "license": "MIT",
   "scripts": {

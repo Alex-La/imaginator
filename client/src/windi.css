@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+
+@layer base {
+  body {
+    @apply bg-white text-grey-800;
+  }
+}
+
+@tailwind components;
+
+@layer components {
+  h1 {
+    @apply text-[64px] leading-[80px] font-bold;
+  }
+  h2 {
+    @apply text-[48px] leading-[64px] font-bold;
+  }
+  h3 {
+    @apply text-[32px] leading-[48px] font-bold;
+  }
+  h4 {
+    @apply text-[24px] leading-[36px] font-bold;
+  }
+  h5 {
+    @apply text-[20px] leading-[30px] font-bold;
+  }
+  h6 {
+    @apply text-[18px] leading-[28px] font-bold;
+  }
+
+  .s1 {
+    @apply text-[16px] leading-[24px] font-semibold;
+  }
+  .s2 {
+    @apply text-[14px] leading-[22px] font-bold;
+  }
+  .b1 {
+    @apply text-[16px] leading-[24px] font-normal;
+  }
+  .b2 {
+    @apply text-[14px] leading-[22px] font-normal;
+  }
+  .caption {
+    @apply text-[12px] leading-[18px] font-normal;
+  }
+  .overline {
+    @apply text-[12px] leading-[18px] font-bold uppercase;
+  }
+}
+
+@tailwind utilities;
+
+@layer utilities {
+}
