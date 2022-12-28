@@ -3,13 +3,16 @@ import {GraphQLError} from "graphql"
 import {CheckImageExistParams, CreateImageArgs, RemoveImageParams} from "./typeDefs"
 import {ImageModel} from "../entities/Image"
 import {ApolloContext} from "../config/apolloServerConfig"
+import {isAuthorized} from "../utils"
 
 type PromiseWithError<T> = Promise<T | GraphQLError>
 
 const resolvers = {
   Query: {
-    images: async (_: any, __: any, {dataSources}: ApolloContext): PromiseWithError<ImageModel[]> => {
+    images: async (_: any, __: any, {token, dataSources}: ApolloContext): PromiseWithError<ImageModel[]> => {
       try {
+        if (!isAuthorized(token)) return new GraphQLError("Please, provide valid access token!")
+
         return await dataSources.imagesAPI.findAllImages()
       } catch (e) {
         return new GraphQLError("Can't load image list!")
