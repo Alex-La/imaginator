@@ -1,12 +1,25 @@
-function App() {
+import {ApolloProvider} from "@apollo/client"
+import {FC} from "react"
+import {HelmetProvider} from "react-helmet-async"
+import {BrowserRouter} from "react-router-dom"
+
+import {ErrorBoundray} from "~components"
+import {client} from "~apollo"
+
+import Router from "~router/Router"
+
+const App: FC = () => {
   return (
     <div className="App">
-      <h1>Almost before…</h1>
-      <h2>Almost before…</h2>
-      <h3>Almost before…</h3>
-      <h4>Almost before…</h4>
-      <h5>Almost before…</h5>
-      <h6>Almost before…</h6>
+      <HelmetProvider>
+        <ErrorBoundray>
+          <ApolloProvider client={client}>
+            <BrowserRouter>
+              <Router />
+            </BrowserRouter>
+          </ApolloProvider>
+        </ErrorBoundray>
+      </HelmetProvider>
     </div>
   )
 }

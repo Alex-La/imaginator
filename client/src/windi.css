@@ -6,6 +6,15 @@
   body {
     @apply bg-white text-grey-800;
   }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  *:focus {
+    @apply !outline-none !ring-0;
+  }
 }
 
 @tailwind components;

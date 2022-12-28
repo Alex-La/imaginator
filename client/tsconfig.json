@@ -14,8 +14,31 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "~apollo/*": ["apollo/*"],
+      "~apollo": ["apollo/"],
+      "~components/*": ["components/*"],
+      "~components": ["components/"],
+      "~elements/*": ["elements/*"],
+      "~elements": ["elements/"],
+      "~hooks/*": ["hooks/*"],
+      "~hooks": ["hooks/"],
+      "~icons/*": ["icons/*"],
+      "~icons": ["icons/"],
+      "~overlays/*": ["overlays/*"],
+      "~overlays": ["overlays/"],
+      "~pages/*": ["pages/*"],
+      "~pages": ["pages/"],
+      "~router/*": ["router/*"],
+      "~router": ["router/"],
+      "~types/*": ["types/*"],
+      "~types": ["types/"],
+      "~utils/*": ["utils/*"],
+      "~utils": ["utils/"]
+    }
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{"path": "./tsconfig.node.json"}]
 }
