@@ -1,18 +1,18 @@
 {
   "name": "imaginator-backend",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "repository": "https://github.com/Alex-La/imaginator-backend.git",
   "author": "Alex Larionov <lars6162@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=production tsc && node dist/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon src/index.ts"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/node": "^18.11.18",
-    "cross-env": "^7.0.3",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"

@@ -1,5 +1,4 @@
 import "reflect-metadata"
-import "./config/envConfig"
 
 import {ApolloServer} from "@apollo/server"
 import {expressMiddleware} from "@apollo/server/express4"
@@ -14,7 +13,7 @@ import dbConfig from "./config/dbConfig"
 import ImagesAPI from "./dataSources/ImagesAPI"
 import ImageEntity from "./entities/Image"
 
-const PORT = process.env.PORT
+const PORT = 4000
 
 async function start() {
   await dbConfig.initialize()
