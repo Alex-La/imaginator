@@ -57,6 +57,22 @@
   .overline {
     @apply text-[12px] leading-[18px] font-bold uppercase;
   }
+
+  .btn {
+    @apply transition ease-in-out flex items-center justify-center text-[15px] leading-[26px] font-medium h-11 px-5 rounded-md bg-grey-400 hover:bg-grey-300 active:bg-grey-500;
+  }
+
+  .btn:disabled {
+    @apply !text-grey-500 !bg-grey-200 !pointer-events-none;
+  }
+
+  .btn.info {
+    @apply text-white bg-info-main hover:bg-info-light active:bg-info-dark;
+  }
+
+  .btn.error {
+    @apply text-white bg-error-main hover:bg-error-light active:bg-error-dark;
+  }
 }
 
 @tailwind utilities;

@@ -2,6 +2,7 @@ import {ApolloProvider} from "@apollo/client"
 import {FC} from "react"
 import {HelmetProvider} from "react-helmet-async"
 import {BrowserRouter} from "react-router-dom"
+import {Toaster} from "react-hot-toast"
 
 import {ErrorBoundray} from "~components"
 import {client} from "~apollo"
@@ -20,6 +21,7 @@ const App: FC = () => {
           </ApolloProvider>
         </ErrorBoundray>
       </HelmetProvider>
+      <Toaster position="top-right" />
     </div>
   )
 }

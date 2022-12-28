@@ -42,7 +42,7 @@ const Sidebar: FC = () => {
 
       <div className="mt-10 w-full">
         {routes.map((value, index) => (
-          <NavItem item={value} index={index} totalItems={routes.length} />
+          <NavItem key={`nav_item_${index}`} item={value} index={index} totalItems={routes.length} />
         ))}
       </div>
     </div>
