@@ -1,5 +1,5 @@
 {
-  "name": "imaginator-backend",
+  "name": "imaginator",
   "version": "1.0.0",
   "main": "dist/index.js",
   "repository": "https://github.com/Alex-La/imaginator-backend.git",
