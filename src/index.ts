@@ -7,13 +7,17 @@ import {expressMiddleware} from "@apollo/server/express4"
 import express from "express"
 import http from "http"
 import cors from "cors"
+
 import apolloServerConfig, {ApolloContext} from "./config/apolloServerConfig"
-import appDataSource from "./appDataSource"
+import dbConfig from "./config/dbConfig"
+
+import ImagesAPI from "./dataSources/ImagesAPI"
+import ImageEntity from "./entities/Image"
 
 const PORT = process.env.PORT
 
 async function start() {
-  await appDataSource.initialize()
+  await dbConfig.initialize()
 
   const app = express()
   const httpServer = http.createServer(app)
@@ -26,7 +30,18 @@ async function start() {
     cors<cors.CorsRequest>(),
     express.json(),
     expressMiddleware(server, {
-      context: async ({req}) => ({token: req.headers.token}),
+      context: async ({req}) => {
+        const token = req.headers.authorization || ""
+
+        const imagesRepository = dbConfig.getRepository(ImageEntity)
+
+        return {
+          token,
+          dataSources: {
+            imagesAPI: new ImagesAPI(imagesRepository),
+          },
+        }
+      },
     }),
   )
 
