@@ -66,6 +66,10 @@
     @apply !text-grey-500 !bg-grey-200 !pointer-events-none;
   }
 
+  .btn.small {
+    @apply !h-8;
+  }
+
   .btn.info {
     @apply text-white bg-info-main hover:bg-info-light active:bg-info-dark;
   }

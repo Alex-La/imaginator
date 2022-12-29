@@ -48,7 +48,7 @@ const Home: FC = () => {
           <img ref={imageRef} className="w-full h-100 sm:h-80 lg:h-100 bg-grey-200 rounded-lg object-cover" src={url} />
           {loading && (
             <div className="absolute inset-0 bg-grey-100 rounded-lg flex items-center justify-center">
-              <p className="caption animate-bounce">Загрузка...</p>
+              <p className="caption animate-bounce">Loading...</p>
             </div>
           )}
         </div>

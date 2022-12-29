@@ -10,6 +10,7 @@ const Router: FC = () => {
       <Route path="/" element={<AppOverlay />}>
         <Route index element={<Pages.Home />} />
         <Route path="admin" element={<Pages.Admin />} />
+        <Route path="admin/:token" element={<Pages.Admin />} />
       </Route>
     </Routes>
   )
