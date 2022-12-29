@@ -12,6 +12,6 @@ RUN ls -a
 RUN npm install
 RUN npm run build
 
-EXPOSE 4000
+EXPOSE ${API_PORT}
 
 CMD ["npm", "run", "start"]
