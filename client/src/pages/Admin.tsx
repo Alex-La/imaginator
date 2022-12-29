@@ -1,14 +1,19 @@
-import {FC} from "react"
+import {FC, useEffect} from "react"
 import {useParams} from "react-router-dom"
 import cls from "classnames"
 
 import {Page} from "~components"
 import {useImages} from "~hooks/graphql/queries"
 import {ImageState} from "~apollo/graphql/fragments"
+import {adminAccessToken} from "~apollo/startup/cache"
 
 const Admin: FC = () => {
   const {token} = useParams()
   const {images, loading} = useImages(token)
+
+  useEffect(() => {
+    adminAccessToken(token)
+  }, [token])
 
   return (
     <Page title="Admin">

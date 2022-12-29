@@ -1,27 +1,32 @@
-import {FC} from "react"
-import {isSidebarOpen} from "~apollo/startup/cache"
+import {FC, useMemo} from "react"
+import {useReactiveVar} from "@apollo/client"
 
+import {adminAccessToken, isSidebarOpen} from "~apollo/startup/cache"
 import useBreakpoints from "~hooks/useBreakpoints"
 
 import NavItem, {NavigationItem} from "./NavItem"
 
-const routes: NavigationItem[] = [
-  {
-    path: "/",
-    title: "Home",
-    icon: "home",
-  },
-  {
-    path: "/admin",
-    title: "Admin",
-    icon: "admin_panel_settings",
-  },
-]
-
 const Sidebar: FC = () => {
   const {isMobile} = useBreakpoints()
+  const accessToken = useReactiveVar(adminAccessToken)
 
   const closeSidebar = () => isSidebarOpen(false)
+
+  const routes: NavigationItem[] = useMemo(
+    () => [
+      {
+        path: "/",
+        title: "Home",
+        icon: "home",
+      },
+      {
+        path: `/admin${accessToken ? "/" + accessToken : ""}`,
+        title: "Admin",
+        icon: "admin_panel_settings",
+      },
+    ],
+    [accessToken],
+  )
 
   return (
     <div className="py-2 sm:py-5 lg:pt-10 lg:pb-8 h-full flex flex-col sm:items-center lg:items-start">
