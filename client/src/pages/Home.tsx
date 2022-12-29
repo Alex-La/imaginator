@@ -53,10 +53,10 @@ const Home: FC = () => {
           )}
         </div>
         <div className="flex mt-5 justify-center">
-          <button className="btn info mr-2" disabled={createLoading} onClick={onAccept}>
+          <button className="btn info mr-2" disabled={createLoading || loading} onClick={onAccept}>
             Accept
           </button>
-          <button className="btn error ml-2" disabled={createLoading} onClick={onReject}>
+          <button className="btn error ml-2" disabled={createLoading || loading} onClick={onReject}>
             Reject
           </button>
         </div>
