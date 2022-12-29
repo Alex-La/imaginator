@@ -4,7 +4,7 @@ import {toast} from "react-hot-toast"
 
 import cache from "./cache"
 
-const API_URI = "http://localhost:4000/graphql"
+const API_URI = "/api"
 
 const errorLink = onError(({graphQLErrors, networkError}) => {
   if (graphQLErrors)
