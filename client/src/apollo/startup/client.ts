@@ -4,7 +4,7 @@ import {toast} from "react-hot-toast"
 
 import cache from "./cache"
 
-const URI = "http://localhost:4000/graphql"
+const API_URI = "http://localhost:4000/graphql"
 
 const errorLink = onError(({graphQLErrors, networkError}) => {
   if (graphQLErrors)
@@ -18,7 +18,7 @@ const errorLink = onError(({graphQLErrors, networkError}) => {
   }
 })
 const httpLink = new HttpLink({
-  uri: URI,
+  uri: API_URI,
 })
 
 const client = new ApolloClient({

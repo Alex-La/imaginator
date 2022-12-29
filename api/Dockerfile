@@ -1,17 +1,17 @@
 FROM node:16-alpine3.16
 
-WORKDIR /app
+WORKDIR /app/api
 
 COPY package*.json ./
 COPY tsconfig.json ./
 
-COPY src /app/src
+COPY src /app/api/src
 
 RUN ls -a
 
-RUN yarn install
-RUN yarn build
+RUN npm install
+RUN npm run build
 
 EXPOSE 4000
 
-CMD ["yarn", "start"]
+CMD ["npm", "run", "start"]
