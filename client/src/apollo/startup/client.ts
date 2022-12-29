@@ -15,8 +15,9 @@ const errorLink = onError(({graphQLErrors, networkError}) => {
     console.log(`[Network error]: ${networkError}`)
   }
 })
+
 const httpLink = new HttpLink({
-  uri: "/api",
+  uri: import.meta.env.CLIENT_API_URL,
 })
 
 const client = new ApolloClient({

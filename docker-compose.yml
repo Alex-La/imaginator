@@ -5,6 +5,7 @@ services:
       context: ./client
     environment:
       CLIENT_PORT: ${CLIENT_PORT}
+      CLIENT_API_URL: ${CLIENT_API_URL}
     ports:
       - "3000:3000"
 
