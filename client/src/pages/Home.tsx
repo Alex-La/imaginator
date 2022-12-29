@@ -1,28 +1,16 @@
-import {FC, useCallback, useEffect, useRef} from "react"
+import {FC, useCallback, useRef} from "react"
 import {toast} from "react-hot-toast"
 
 import {Page} from "~components"
 import {useLoremPicsum} from "~hooks"
 import {useCreateImage} from "~hooks/graphql/mutations"
-import {useCheckImageExist} from "~hooks/graphql/queries"
 import {ImageState} from "~apollo/graphql/fragments"
 
 const Home: FC = () => {
   const imageRef = useRef<HTMLImageElement>(null)
 
   const {id, url, loading, fetchImage} = useLoremPicsum()
-  const {checkExist} = useCheckImageExist()
   const {createImage, loading: createLoading} = useCreateImage()
-
-  useEffect(() => {
-    if (id)
-      checkExist({
-        variables: {id},
-        onCompleted({res}) {
-          if (res) fetchImage()
-        },
-      })
-  }, [id, fetchImage])
 
   const onCreate = useCallback(
     (state: ImageState) => {
