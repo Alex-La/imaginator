@@ -1,11 +1,11 @@
 import {FC, useEffect} from "react"
 import {useParams} from "react-router-dom"
-import cls from "classnames"
 
 import {Page} from "~components"
 import {useImages} from "~hooks/graphql/queries"
-import {ImageState} from "~apollo/graphql/fragments"
 import {adminAccessToken} from "~apollo/startup/cache"
+
+import TableRow from "./components/TableRow"
 
 const Admin: FC = () => {
   const {token} = useParams()
@@ -36,26 +36,8 @@ const Admin: FC = () => {
               </tr>
             </thead>
             <tbody>
-              {images?.map(({id, path, state}) => (
-                <tr className="bg-white border-b" key={`image_${id}`}>
-                  <th scope="row" className="py-4 px-6 font-medium text-grey-900 whitespace-nowrap">
-                    <a href={path} target="_blank" className="text-info-main hover:underline">
-                      {id}
-                    </a>
-                  </th>
-                  <td className="py-4 px-6">
-                    <span
-                      className={cls("px-4 py-2 rounded-sm", {
-                        "bg-primary-lighter text-primary-main": state === ImageState.ACCEPTED,
-                        "bg-error-lighter text-error-main": state === ImageState.REJECTED,
-                      })}>
-                      {state}
-                    </span>
-                  </td>
-                  <td className="py-4 px-6">
-                    <button className="btn small error">Discard</button>
-                  </td>
-                </tr>
+              {images?.map((image, index) => (
+                <TableRow key={`image_${index}`} image={image} />
               ))}
             </tbody>
           </table>
