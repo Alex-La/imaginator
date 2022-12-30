@@ -17,7 +17,7 @@ const errorLink = onError(({graphQLErrors, networkError}) => {
 })
 
 const httpLink = new HttpLink({
-  uri: import.meta.env.CLIENT_API_URL,
+  uri: import.meta.env.VITE_CLIENT_API_URL,
 })
 
 const client = new ApolloClient({

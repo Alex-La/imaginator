@@ -5,7 +5,7 @@ import WindiCSS from "vite-plugin-windicss"
 import PluginRewriteAll from "vite-plugin-rewrite-all"
 
 export default defineConfig(({mode}) => {
-  process.env = {...process.env, ...loadEnv(mode, process.cwd(), "")}
+  process.env = {...process.env, ...loadEnv(mode, process.cwd())}
 
   return {
     server: {

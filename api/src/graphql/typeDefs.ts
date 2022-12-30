@@ -4,10 +4,6 @@ interface Args<T> {
   args: T
 }
 
-export interface CheckImageExistParams {
-  id: number
-}
-
 export interface CreateImageParams {
   id: number
   path: string
@@ -23,7 +19,7 @@ export interface CreateImageArgs extends Args<CreateImageParams> {}
 const typeDefs = `#graphql
     type Query {
         images: [Image!]!
-        checkImageExist(id: Int!): Boolean!
+        picsumPhoto: String!
     }
 
     type Mutation {

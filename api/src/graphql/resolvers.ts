@@ -1,6 +1,6 @@
 import {GraphQLError} from "graphql"
 
-import {CheckImageExistParams, CreateImageArgs, RemoveImageParams} from "./typeDefs"
+import {CreateImageArgs, RemoveImageParams} from "./typeDefs"
 import {ImageModel} from "../entities/Image"
 import {ApolloContext} from "../config/apolloServerConfig"
 import {isAuthorized} from "../utils"
@@ -18,16 +18,11 @@ const resolvers = {
         return new GraphQLError("Can't load image list!")
       }
     },
-    checkImageExist: async (
-      _: any,
-      {id}: CheckImageExistParams,
-      {dataSources}: ApolloContext,
-    ): PromiseWithError<boolean> => {
+    picsumPhoto: async (_: any, __: any, {dataSources}: ApolloContext): PromiseWithError<string> => {
       try {
-        const image = await dataSources.imagesAPI.findImageById(id)
-        return !!image
+        return await dataSources.imagesAPI.getPicsumPhoto()
       } catch (e) {
-        return new GraphQLError("Server check existence error!")
+        return new GraphQLError("All photos are checked!")
       }
     },
   },
