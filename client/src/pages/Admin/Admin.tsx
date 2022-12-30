@@ -1,19 +1,14 @@
-import {FC, useEffect} from "react"
-import {useParams} from "react-router-dom"
+import {FC} from "react"
+import {useSearchParams} from "react-router-dom"
 
 import {Page} from "~components"
 import {useImages} from "~hooks/graphql/queries"
-import {adminAccessToken} from "~apollo/startup/cache"
 
 import TableRow from "./components/TableRow"
 
 const Admin: FC = () => {
-  const {token} = useParams()
-  const {images, loading} = useImages(token)
-
-  useEffect(() => {
-    adminAccessToken(token)
-  }, [token])
+  const [params] = useSearchParams()
+  const {images, loading} = useImages(params.get("token") || undefined)
 
   return (
     <Page title="Admin">
