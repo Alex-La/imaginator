@@ -2,6 +2,7 @@ import {RESTDataSource} from "@apollo/datasource-rest"
 import {Repository} from "typeorm"
 import ImageEntity, {ImageModel} from "../entities/Image"
 import {CreateImageParams} from "../graphql/typeDefs"
+import {randIntExcep} from "../utils"
 
 const API_PICSUM_URL = process.env.API_PICSUM_URL
 
@@ -19,11 +20,26 @@ class ImagesAPI extends RESTDataSource {
   async getPicsumPhoto() {
     try {
       const query = this.repository.createQueryBuilder("image")
-      query.select("MAX(image.id)", "id")
-      const {id} = await query.getRawOne<{id: number}>()
-      const path = `/id/${id !== null ? id + 1 : 0}/400/600`
-      await this.get(path)
-      return this.baseURL + path
+
+      query.select("image.id", "id")
+      const raws = await query.getRawMany<{id: number}>()
+      const ids = raws.map(r => r.id)
+
+      query.select("Max(image.id)", "maxId")
+      const {maxId} = await query.getRawOne<{maxId: number}>()
+
+      let id: number
+
+      if (maxId == null) id = 0
+      else {
+        if (ids.length - 1 === maxId) {
+          const nextId = maxId + 1
+          await this.get(`/id/${nextId}/400/600`)
+          id = nextId
+        } else id = randIntExcep(0, maxId, ids)
+      }
+
+      return this.baseURL + `/id/${id}/400/600`
     } catch (e) {
       if (e.extensions.response.status === 404) throw new Error(e.message)
     }
