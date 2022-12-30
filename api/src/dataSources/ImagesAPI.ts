@@ -21,7 +21,6 @@ class ImagesAPI extends RESTDataSource {
       const query = this.repository.createQueryBuilder("image")
       query.select("MAX(image.id)", "id")
       const {id} = await query.getRawOne<{id: number}>()
-      console.log(id)
       const path = `/id/${id !== null ? id + 1 : 0}/400/600`
       await this.get(path)
       return this.baseURL + path

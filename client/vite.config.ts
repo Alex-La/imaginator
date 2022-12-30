@@ -10,10 +10,10 @@ export default defineConfig(({mode}) => {
   return {
     server: {
       host: true,
-      port: Number(process.env.CLIENT_PORT),
+      port: Number(process.env.VITE_CLIENT_PORT),
     },
     preview: {
-      port: Number(process.env.CLIENT_PORT),
+      port: Number(process.env.VITE_CLIENT_PORT),
     },
     plugins: [react(), TsconfigPaths(), WindiCSS(), PluginRewriteAll()],
   }

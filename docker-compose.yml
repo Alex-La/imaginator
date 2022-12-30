@@ -20,6 +20,7 @@ services:
       API_DB_USER_NAME: ${API_DB_USER_NAME}
       API_DB_PASSWORD: ${API_DB_PASSWORD}
       API_DB_DATABASE: ${API_DB_DATABASE}
+      API_PICSUM_URL: ${API_PICSUM_URL}
     ports:
       - "4000:${API_PORT}"
     depends_on:
