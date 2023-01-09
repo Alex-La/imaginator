@@ -1,52 +1,26 @@
-import "./config/envConfig"
+import "./config/envConfig.mjs"
 import "reflect-metadata"
 
-import {ApolloServer} from "@apollo/server"
-import {expressMiddleware} from "@apollo/server/express4"
+import { ApolloServer } from '@apollo/server'
+import { expressMiddleware } from '@apollo/server/express4'
 
-import express from "express"
-import http from "http"
-import cors from "cors"
+import express from 'express'
+import {createServer} from 'http'
+import cors from 'cors'
 
-import apolloServerConfig, {ApolloContext} from "./config/apolloServerConfig"
-import dbConfig from "./config/dbConfig"
+import apolloConfig from './config/apolloConfig.mjs'
+import expressConfig from './config/expressConfig.mjs'
 
-import ImagesAPI from "./dataSources/ImagesAPI"
-import ImageEntity from "./entities/Image"
+const PORT = process.env.PORT
 
-const PORT = process.env.API_PORT
+const app = express()
 
-async function start() {
-  await dbConfig.initialize()
+const httpServer = createServer(app)
+const apolloServer = new ApolloServer(apolloConfig(httpServer))
 
-  const app = express()
-  const httpServer = http.createServer(app)
-  const server = new ApolloServer<ApolloContext>(apolloServerConfig(httpServer))
+await  apolloServer.start()
 
-  await server.start()
+app.use('/graphql', cors(), express.json(), expressMiddleware(apolloServer, expressConfig))
 
-  app.use(
-    "/graphql",
-    cors<cors.CorsRequest>(),
-    express.json(),
-    expressMiddleware(server, {
-      context: async ({req}) => {
-        const token = req.headers.authorization || ""
-
-        const imagesRepository = dbConfig.getRepository(ImageEntity)
-
-        return {
-          token,
-          dataSources: {
-            imagesAPI: new ImagesAPI(imagesRepository),
-          },
-        }
-      },
-    }),
-  )
-
-  await new Promise<void>(resolve => httpServer.listen({port: PORT}, resolve))
-  console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`)
-}
-
-start()
+await new Promise<void>((resolve) => httpServer.listen({ port: PORT }, resolve))
+console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`)

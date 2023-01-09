@@ -2,22 +2,17 @@ import { ApolloServerOptions } from '@apollo/server'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import { Server } from 'http'
 
-import typeDefs from '../graphql/typeDefs'
-import resolvers from '../graphql/resolvers'
-
-import ImagesAPI from '../dataSources/ImagesAPI'
+import typeDefs from '../graphql/typeDefs.mjs'
+import resolvers from '../graphql/resolvers.mjs'
 
 export interface ApolloContext {
     token: string
-    dataSources: {
-        imagesAPI: ImagesAPI
-    }
 }
 
-const apolloServerConfig = (httpServer: Server): ApolloServerOptions<ApolloContext> => ({
+const apolloConfig = (httpServer: Server): ApolloServerOptions<ApolloContext> => ({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 })
 
-export default apolloServerConfig
+export default apolloConfig

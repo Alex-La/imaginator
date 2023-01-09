@@ -5,6 +5,7 @@
   "repository": "https://github.com/Alex-La/imaginator.git",
   "author": "Alex Larionov <lars6162@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "tsc && cross-env NODE_ENV=production node dist/index.js",
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts"
