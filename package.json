@@ -1,0 +1,30 @@
+{
+  "name": "imaginator",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "repository": "https://github.com/Alex-La/imaginator.git",
+  "author": "Alex Larionov <lars6162@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && cross-env NODE_ENV=production node dist/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.ts"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/node": "^18.11.18",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@apollo/datasource-rest": "^4.3.2",
+    "@apollo/server": "^4.3.0",
+    "dotenv": "^16.0.3",
+    "dotenv-expand": "^10.0.0",
+    "graphql": "^16.6.0",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.11"
+  }
+}
